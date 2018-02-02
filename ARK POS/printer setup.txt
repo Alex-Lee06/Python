@@ -1,0 +1,8 @@
+To configure the bluetooth printer.
+
+Steps:
+-Install drivers
+-Control Panel
+-View Devices and Printers (Look for POS-58)
+
+Make sure to update steps to setting up Printer for other devices.
