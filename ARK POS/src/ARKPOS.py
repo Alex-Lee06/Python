@@ -6,6 +6,12 @@ This program is a restaurant menu containing tabs for category of types of dishe
 
 """
 
+"""
+Things to work on.
+-Added tabs but button is overlaying it.  Fix it so that button is on each tab.
+-Button is no longer working.  
+"""
+
 import sys
 import os
 from PyQt5.QtWidgets import *
@@ -13,39 +19,55 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class Example(QMainWindow):
+class POS_App(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.left = 800
-        self.top = 400
-        self.width = 520
+        self.left = 600
+        self.top = 350
+        self.width = 620
         self.height = 400
         self.initUI()
 
 
     def initUI(self):
-
+        self.setGeometry(self.left, self.top, self.width, self.height) # Creates size of boarder windows for the application
+        self.setWindowTitle('ARK Menu')    #Title for the program window
+        layout = QGridLayout()
+        self.setLayout(layout)
+        tabWidget = QTabWidget()
+        self.tab1 = QWidget()
+        self.tab2 = QWidget()
+        tabWidget.addTab(self.tab1,"tab 1")
+        tabWidget.addTab(self.tab2,"tab 2")
+        layout.addWidget(tabWidget, 0, 0)
 #         implementing buttons
         button = QPushButton('PyQt5 button', self)
+        # self.tab1.layout.addWidget(self.button)
         button.move(200,140) #size of button
         button.clicked.connect(self.on_click) #this is an event response when clicking the buttons.
 
-        button2  = QPushButton('Finish', self)
-        button2.move(100, 140)
-        button2.clicked.connect(self.on_click)
 
-        button3 = QPushButton('Print', self)
-        button3.move(300, 140)
-        button3.clicked.connect(self.on_click2)
+        # button2  = QPushButton('Finish', self)
+        # button2.move(100, 140)
+        # button2.clicked.connect(self.on_click)
+        #
+        # button3 = QPushButton('Print', self)
+        # button3.move(300, 140)
+        # button3.clicked.connect(self.on_click2)
+        #
+        # button4 = QPushButton('New Order', self)
+        # button4.move(400, 140)
+        # button4.clicked.connect(self.on_click3)
 
-        button4 = QPushButton('New Order', self)
-        button4.move(400, 140)
-        button4.clicked.connect(self.on_click3)
-
-        self.setGeometry(self.left, self.top, self.width, self.height) # Creates size of boarder windows for the application
-        self.setWindowTitle('ARK Menu')    #Title for the program window
         self.show()
+        # print("working")
+
+
+
+    # @pyqtSlot
+    # def tabClick(self):
+
 
     def on_click(self):
         filename = "pythonOrder.txt"
@@ -64,8 +86,10 @@ class Example(QMainWindow):
         filename = "pythonOrder.txt"
         myfile = open(filename, 'w')
 
+
+
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
-    ex = Example()
+    ex = POS_App()
     sys.exit(app.exec_())

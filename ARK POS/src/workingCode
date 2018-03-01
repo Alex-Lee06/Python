@@ -13,18 +13,21 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class Example(QMainWindow):
+class POS_App(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.left = 800
-        self.top = 400
-        self.width = 520
+        self.left = 600
+        self.top = 350
+        self.width = 620
         self.height = 400
         self.initUI()
 
 
     def initUI(self):
+        self.setGeometry(self.left, self.top, self.width, self.height) # Creates size of boarder windows for the application
+        self.setWindowTitle('ARK Menu')    #Title for the program window
+
 
 #         implementing buttons
         button = QPushButton('PyQt5 button', self)
@@ -43,9 +46,14 @@ class Example(QMainWindow):
         button4.move(400, 140)
         button4.clicked.connect(self.on_click3)
 
-        self.setGeometry(self.left, self.top, self.width, self.height) # Creates size of boarder windows for the application
-        self.setWindowTitle('ARK Menu')    #Title for the program window
         self.show()
+        # print("working")
+
+
+
+	# @pyqtSlot
+	# def tabClick(self):
+
 
     def on_click(self):
         filename = "pythonOrder.txt"
@@ -64,8 +72,10 @@ class Example(QMainWindow):
         filename = "pythonOrder.txt"
         myfile = open(filename, 'w')
 
+
+
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
-    ex = Example()
+    ex = POS_App()
     sys.exit(app.exec_())
